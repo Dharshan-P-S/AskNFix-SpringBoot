@@ -19,4 +19,6 @@ public interface QueryRepository extends JpaRepository<Query, Long> {
 
     List<Query> findByAssignedStaffIsNotNull();
 
+    List<Query> findByRoomRoomIdAndStatusNot(Long roomId, String status);
+
 }

@@ -128,6 +128,18 @@ public class QueryController {
         );
     }
 
+    @GetMapping("/room/{roomId}/active")
+    @PreAuthorize("hasRole('STUDENT')")
+    public List<QueryAppliance> getActiveRoomQueryAppliances(
+            @PathVariable Long roomId) {
+
+        return queryApplianceRepository
+                .findByQueryRoomRoomIdAndQueryStatusNot(
+                        roomId,
+                        "COMPLETED"
+                );
+    }
+
     @GetMapping("/room/{roomId}/appliances")
     @PreAuthorize("hasRole('STUDENT')")
     public List<QueryAppliance> getRoomQueryAppliances(

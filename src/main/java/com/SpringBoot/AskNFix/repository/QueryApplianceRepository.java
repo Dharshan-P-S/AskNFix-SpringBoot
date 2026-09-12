@@ -16,4 +16,9 @@ public interface QueryApplianceRepository
             Long roomId,
             Long applianceId
     );
+
+    List<QueryAppliance> findByQueryRoomRoomIdAndQueryStatusNot(
+            Long roomId,
+            String status
+    );
 }

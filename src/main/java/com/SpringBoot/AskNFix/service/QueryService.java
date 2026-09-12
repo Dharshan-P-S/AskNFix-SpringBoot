@@ -348,4 +348,11 @@ public class QueryService {
 
         return queryRepository.findByAssignedStaffIsNotNull();
     }
+
+    public List<Query> getActiveRoomQueries(Long roomId) {
+        return queryRepository.findByRoomRoomIdAndStatusNot(
+                roomId,
+                "COMPLETED"
+        );
+    }
 }

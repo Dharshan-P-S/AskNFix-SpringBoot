@@ -53,7 +53,6 @@ public class Query {
     @Column(name = "completion_description", length = 1000)
     private String completionDescription;
 
-    @JsonIgnore
     @OneToMany(mappedBy = "query", cascade = CascadeType.ALL, orphanRemoval = true)
     @Builder.Default
     private List<QueryAppliance> queryAppliances = new ArrayList<>();
