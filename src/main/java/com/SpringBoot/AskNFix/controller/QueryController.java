@@ -35,10 +35,11 @@ public class QueryController {
         );
     }
 
-    @GetMapping
     @PreAuthorize("hasRole('ADMIN')")
-    public List<Query> getAllQueries() {
-        return queryService.getAllQueries();
+    @GetMapping("/assigned")
+    public List<Query> getAllAssignedQueries() {
+
+        return queryService.getAllAssignedQueries();
     }
 
     @GetMapping("/{queryId}")

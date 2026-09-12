@@ -343,4 +343,9 @@ public class QueryService {
 
         return queryRepository.save(query);
     }
+
+    public List<Query> getAllAssignedQueries() {
+
+        return queryRepository.findByAssignedStaffIsNotNull();
+    }
 }

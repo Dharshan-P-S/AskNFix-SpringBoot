@@ -16,4 +16,7 @@ public interface QueryRepository extends JpaRepository<Query, Long> {
     List<Query> findByBuildingBuildingId(Long buildingId);
 
     List<Query> findByRoomRoomId(Long roomId);
+
+    List<Query> findByAssignedStaffIsNotNull();
+
 }
