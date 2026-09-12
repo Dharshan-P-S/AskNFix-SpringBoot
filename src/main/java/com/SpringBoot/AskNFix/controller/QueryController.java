@@ -2,6 +2,8 @@ package com.SpringBoot.AskNFix.controller;
 
 import com.SpringBoot.AskNFix.dto.CreateQueryRequest;
 import com.SpringBoot.AskNFix.entity.Query;
+import com.SpringBoot.AskNFix.entity.QueryAppliance;
+import com.SpringBoot.AskNFix.repository.QueryApplianceRepository;
 import com.SpringBoot.AskNFix.service.QueryService;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
@@ -14,9 +16,11 @@ import java.util.List;
 public class QueryController {
 
     private final QueryService queryService;
+    private final QueryApplianceRepository queryApplianceRepository;
 
-    public QueryController(QueryService queryService) {
+    public QueryController(QueryService queryService, QueryApplianceRepository queryApplianceRepository) {
         this.queryService = queryService;
+        this.queryApplianceRepository = queryApplianceRepository;
     }
 
     @PostMapping
@@ -121,5 +125,13 @@ public class QueryController {
                 completionDescription,
                 authentication.getName()
         );
+    }
+
+    @GetMapping("/room/{roomId}/appliances")
+    @PreAuthorize("hasRole('STUDENT')")
+    public List<QueryAppliance> getRoomQueryAppliances(
+            @PathVariable Long roomId) {
+
+        return queryApplianceRepository.findByQueryRoomRoomId(roomId);
     }
 }

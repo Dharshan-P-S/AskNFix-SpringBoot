@@ -47,6 +47,9 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                     SecurityContextHolder.getContext().getAuthentication() == null) {
 
                 if (jwtService.isTokenValid(token, email)) {
+                    System.out.println("JWT EMAIL: " + email);
+                    System.out.println("JWT ROLE: " + role);
+                    System.out.println("AUTHORITY: ROLE_" + role);
 
                     List<SimpleGrantedAuthority> authorities =
                             List.of(
